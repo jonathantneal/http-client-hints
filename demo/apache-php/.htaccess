@@ -1,0 +1,18 @@
+# Enable RewriteEngine
+RewriteEngine on
+
+# Get the client hints cookie
+RewriteCond %{HTTP_COOKIE} CH=([^;]+)
+
+# Set the client hints header
+RewriteRule .* - [E=HTTP_CH:%1]
+
+# Set the modified headers
+RewriteRule .* - [E=HTTP_IF_MODIFIED_SINCE:%{HTTP:If-Modified-Since}]
+RewriteRule .* - [E=HTTP_IF_NONE_MATCH:%{HTTP:If-None-Match}]
+
+# If
+RewriteCond %{REQUEST_URI} /image(.+)$ [NC]
+
+# Go to the router
+RewriteRule ^.*$ image/index.php [L]
