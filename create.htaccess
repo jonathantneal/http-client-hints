@@ -1,0 +1,5 @@
+# Get the client hints cookie
+RewriteCond %{HTTP_COOKIE} CH=([^;]+)
+
+# Set the client hints header
+RewriteRule .* - [E=HTTP_CH:%1]

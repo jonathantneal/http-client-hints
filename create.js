@@ -1,0 +1,1 @@
+document.cookie = 'CH=dh=' + screen.height + ',dpr=' + (window.devicePixelRatio || 1) + ',dw=' + screen.width + ';expires=' + new Date(+new Date+31536000000).toGMTString() + ';path=/';
