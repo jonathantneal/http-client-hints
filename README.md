@@ -8,10 +8,14 @@ This project aims to polyfill <abbr title="Client Hints">CH</abbr> to the best a
 
 ## How it works:
 
-One line of JavaScript can make a variety of hints available to the server. If the example script is included at the top of the document, all future requests (even those made from that same document) can leverage these hints. The draft calls for 3 hints; device pixel ratio, device width, and device height.
+One line of JavaScript can make a variety of hints available to the server. For instance, if the following script is included at the top of the document, all future requests (even those made from that same document) can leverage these hints. The draft calls for 3 hints; device pixel ratio, device width, and device height.
 
 ```javascript
-document.cookie = 'CH=dh=' + screen.height + ',dpr=' + (window.devicePixelRatio || 1) + ',dw=' + screen.width + ';expires=' + new Date(+new Date+31536000000).toGMTString() + ';path=/';
+document.cookie = 'CH=dh=' + screen.height +
+	',dpr=' + (window.devicePixelRatio || 1) +
+	',dw=' + screen.width +
+	';expires=' + new Date(+new Date+31536000000).toGMTString() +
+	';path=/';
 ```
 
 Since these 3 <abbr title="Client Hints">CH</abbr> are unlikely to change in a given session, the above snippet could be wrapped in a server-side conditional to load just once.
