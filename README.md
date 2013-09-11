@@ -1,6 +1,6 @@
 # HTTP Client Hints
 
-The Clint Hints (CH) header communicates device capabilities to the server, allowing the server to return the best possible experience back to the device.
+The Client Hints (CH) header communicates device capabilities to the server, allowing the server to return the best possible experience back to the device.
 
 This project aims to polyfill <abbr title="Client Hints">CH</abbr> to the best abilities of the device and server.
 
