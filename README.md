@@ -14,8 +14,21 @@ One line of JavaScript can make a variety of hints available to the server. For 
 document.cookie = 'CH=dh=' + screen.height +
 	',dpr=' + (window.devicePixelRatio || 1) +
 	',dw=' + screen.width +
-	';expires=' + new Date(+new Date+31536000000).toGMTString() +
-	';path=/';
+	',t' + ('ontouchstart' in window || 'msMaxTouchPoints' in navigator) +
+	';expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/';
+```
+
+Or as [separated hints](https://github.com/igrigorik/http-client-hints/issues/14).
+
+```javascript
+(function (p, e, k) {
+	for (k in p) document.cookie = 'CH-' + k + '=' + p[k] + e;
+})({
+	DH: screen.height,
+	DW: screen.width,
+	DPR: window.devicePixelRatio || 1,
+	T: 'ontouchstart' in window || 'msMaxTouchPoints' in navigator
+}, ';expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/');
 ```
 
 Since these 3 <abbr title="Client Hints">CH</abbr> are unlikely to change in a given session, the above snippet could be wrapped in a server-side conditional to load just once.

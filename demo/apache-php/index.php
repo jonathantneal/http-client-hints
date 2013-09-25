@@ -7,15 +7,16 @@ html { font: 300 100%/1.5 "Helvetica Neue Light", "Helvetica Neue", Helvetica, A
 body { margin: 0 auto; max-width: 40em; padding: 0 .5em; }
 img { max-width: 100%; }
 </style>
-<?php if (!isset($_SERVER['HTTP_CH'])) print(
+<?php if (!isset($_COOKIE['CH'])) print(
 	'<script>'.
 	'document.cookie="'.
 		'CH='.
 			'dh="+screen.height+",'.
 			'dpr="+(window.devicePixelRatio||1)+",'.
-			'dw="+screen.width+"'.
+			'dw="+screen.width+",'.
+			't="+("ontouchstart"in window||"msMaxTouchPoints"in navigator)+"'.
 		';'.
-		'expires="+new Date(+new Date+31536000000).toGMTString()+";'.
+		'expires=Fri, 31 Dec 9999 23:59:59 GMT;'.
 		'path=/"'.
 	'</script>'
 ); ?>
